@@ -74,10 +74,13 @@ export default class FindOwnersPage extends React.Component<IFindOwnersPageProps
   submitSearchForm() {
     const { filter } = this.state;
 
-    this.context.router.push({
-      pathname: '/owners/list',
-      query: { 'lastName': filter || '' }
-    });
+    const artificialDelay = filter ? 0 : 3000;
+    setTimeout(() => {
+        this.context.router.push({
+            pathname: '/owners/list',
+            query: {'lastName': filter || ''}
+        });
+    }, artificialDelay);
   }
 
   /** 
