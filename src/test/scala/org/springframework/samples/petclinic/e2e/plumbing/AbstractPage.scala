@@ -3,11 +3,14 @@ package org.springframework.samples.petclinic.e2e.plumbing
 import io.github.bonigarcia.wdm.ChromeDriverManager
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.{WebDriver, Dimension => SeleniumDimension}
-import org.scalatest.selenium.WebBrowser
+import org.scalatest.OptionValues
+import org.scalatest.selenium.{Page, WebBrowser}
 import org.scalatest.time.{Millis, Span}
 
-trait AbstractPage {
+trait AbstractPage extends Page with WebBrowser with OptionValues {
   implicit lazy val driver = AbstractPage.driver
+
+  val homepage = "http://localhost:4444"
 }
 
 object AbstractPage extends WebBrowser {
@@ -24,4 +27,11 @@ object AbstractPage extends WebBrowser {
 
   // Close the browser when the tests are done
   sys.addShutdownHook { quit() }
+
+  // Enables the `go to page` syntax outside of the Page Objects without exposing the WebBrowser
+  object navigator {
+    def to(page: Page): Unit = {
+      go to page
+    }
+  }
 }
