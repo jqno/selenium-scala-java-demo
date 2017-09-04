@@ -12,7 +12,16 @@ class FindOwnersPage extends AbstractPage {
     click on "findOwner"
   }
 
+  def findAllOwners(): Unit = {
+    click on "findOwner"
+  }
+
   def listOfOwners: String = {
     find(cssSelector("tbody")).value.text
   }
+
+  def numberOfOwners: Int = {
+    findAll(cssSelector("tbody tr")).size
+  }
+
 }

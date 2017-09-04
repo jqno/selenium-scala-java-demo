@@ -19,4 +19,13 @@ class FindOwnerTest extends EndToEndTest {
     }
   }
 
+  it should "return all owners when no name is given" in {
+    go to page
+    page.findAllOwners()  // This triggers our artificial wait
+
+    eventually {
+      page.numberOfOwners shouldBe 10
+    }
+  }
+
 }
