@@ -8,7 +8,7 @@ class FindOwnersPage extends AbstractPage {
 
 
   def findOwner(filter: String): Unit = {
-    textField("filter").value = filter
+    textField(name("filter")).value = filter
     click on "findOwner"
   }
 
