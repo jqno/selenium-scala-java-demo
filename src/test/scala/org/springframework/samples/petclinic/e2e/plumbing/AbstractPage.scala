@@ -1,5 +1,8 @@
 package org.springframework.samples.petclinic.e2e.plumbing
 
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 import io.github.bonigarcia.wdm.ChromeDriverManager
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.{WebDriver, Dimension => SeleniumDimension}
@@ -33,5 +36,11 @@ object AbstractPage extends WebBrowser {
     def to(page: Page): Unit = {
       go to page
     }
+  }
+
+  def screenshot(testName: String): Unit = {
+    setCaptureDir("target")
+    val timestamp = LocalDateTime.now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH.mm.ss"))
+    capture to s"$timestamp - $testName.png"
   }
 }

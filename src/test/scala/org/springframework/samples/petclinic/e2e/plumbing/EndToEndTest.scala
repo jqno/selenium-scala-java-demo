@@ -15,6 +15,14 @@ trait EndToEndTest extends FlatSpec with Matchers with Eventually with OptionVal
   private val neverPatienceConfig: PatienceConfig = PatienceConfig(timeout = Span(1, Seconds), interval = Span(50, Millis))
   private val defaultAfterDelay: FiniteDuration = 1.second
 
+  override def withFixture(test: NoArgTest): Outcome = {
+    val outcome = test()
+    if (outcome.isExceptional) {
+      AbstractPage.screenshot(test.name)
+    }
+    outcome
+  }
+
   def go = AbstractPage.navigator
 
   def never[T](fn: => T, delay: FiniteDuration = defaultAfterDelay, config: PatienceConfig = neverPatienceConfig)(implicit pos: Position): Assertion =
