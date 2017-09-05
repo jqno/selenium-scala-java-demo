@@ -28,4 +28,14 @@ class FindOwnerTest extends EndToEndTest {
     }
   }
 
+  it should "go to the owner page if an owner is clicked" in {
+    go to page
+    page.findOwner("Davis")
+
+    val ownerPage = eventually { page.clickOwner("Betty Davis") }
+
+    ownerPage.id shouldBe 2
+    ownerPage.info.name shouldBe "Betty Davis"
+  }
+
 }

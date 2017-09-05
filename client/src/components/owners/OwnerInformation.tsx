@@ -11,19 +11,19 @@ export default ({owner}: { owner: IOwner }) => (
       <tbody>
         <tr>
           <th>Name</th>
-          <td><b>{owner.firstName} {owner.lastName}</b></td>
+          <td id='ownerName'><b>{owner.firstName} {owner.lastName}</b></td>
         </tr>
         <tr>
           <th>Address</th>
-          <td>{owner.address}</td>
+          <td id='ownerAddress'>{owner.address}</td>
         </tr>
         <tr>
           <th>City</th>
-          <td>{owner.city}</td>
+          <td id='ownerCity'>{owner.city}</td>
         </tr>
         <tr>
           <th>Telephone</th>
-          <td>{owner.telephone}</td>
+          <td id='ownerTelephone'>{owner.telephone}</td>
         </tr>
       </tbody>
     </table>
