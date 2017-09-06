@@ -6,9 +6,12 @@ import org.springframework.samples.petclinic.e2e.plumbing.AbstractPage
 class OwnerPage(val url: String) extends AbstractPage {
   require(url startsWith s"$homepage/owners/")
 
-  val id = url.substring(url.lastIndexOf("/") + 1, url.length).toInt
+  val id: Option[Int] = url.substring(url.lastIndexOf("/") + 1, url.length) match {
+    case "new" => None
+    case n => Some(n.toInt)
+  }
 
-  val info = {
+  def info: Owner = {
     val Array(firstName, lastName) = find("ownerName").value.text.split(" ") // Assuming there is exactly 1 space in the name
     Owner(
       firstName,

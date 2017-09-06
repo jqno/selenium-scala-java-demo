@@ -29,4 +29,9 @@ class FindOwnersPage extends AbstractPage {
     new OwnerPage(currentUrl)
   }
 
+  def clickAddOwner(): OwnerPage = {
+    click on linkText("Add Owner")
+    new OwnerPage(currentUrl)
+  }
+
 }
