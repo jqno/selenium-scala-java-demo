@@ -23,6 +23,18 @@ class OwnerPage(val url: String) extends AbstractPage {
       find("ownerTelephone").value.text)
   }
 
+  def fillIn(info: Owner): Unit = {
+    textField(name("firstName")).value = info.firstName
+    textField(name("lastName")).value = info.lastName
+    textField(name("address")).value = info.address
+    textField(name("city")).value = info.city
+    textField(name("telephone")).value = info.telephone
+  }
+
+  def clickAddOwner(): OwnerPage = {
+    click on "submitOwner"
+    new OwnerPage(currentUrl)
+  }
 }
 
 object OwnerPage {

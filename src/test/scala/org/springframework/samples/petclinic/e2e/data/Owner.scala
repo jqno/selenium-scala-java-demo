@@ -6,4 +6,6 @@ case class Owner(firstName: String, lastName: String, address: String, city: Str
 
 object Owner {
   val bettyDavis = Owner("Betty", "Davis", "638 Cardinal Ave.", "Sun Prairie", "6085551749")
+
+  val someValidOwner = Owner("Martin", "Crane", "400 Broad St.", "Seattle", "5551234567")
 }

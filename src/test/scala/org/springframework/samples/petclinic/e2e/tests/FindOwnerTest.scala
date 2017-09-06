@@ -43,7 +43,9 @@ class FindOwnerTest extends EndToEndTest {
     go to page
     val ownerPage = eventually { page.clickAddOwner() }
 
-    ownerPage.id shouldBe None
+    eventually {
+      ownerPage.id shouldBe None
+    }
   }
 
 }

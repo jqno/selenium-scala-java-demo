@@ -80,7 +80,7 @@ export default class OwnerEditor extends React.Component<IOwnerEditorProps, IOwn
           </div>
           <div className='form-group'>
             <div className='col-sm-offset-2 col-sm-10'>
-              <button className='btn btn-default' type='submit' onClick={this.onSubmit}>{owner.isNew ? 'Add Owner' : 'Update Owner'}</button>
+              <button className='btn btn-default' id='submitOwner' type='submit' onClick={this.onSubmit}>{owner.isNew ? 'Add Owner' : 'Update Owner'}</button>
             </div>
           </div>
         </form>
