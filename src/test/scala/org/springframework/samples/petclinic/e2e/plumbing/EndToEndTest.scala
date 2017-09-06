@@ -10,7 +10,7 @@ import scala.concurrent.duration._
 
 trait EndToEndTest extends FlatSpec with Matchers with Eventually with OptionValues {
 
-  override implicit val patienceConfig: PatienceConfig = PatienceConfig(timeout = Span(15, Seconds), interval = Span(50, Millis))
+  override implicit val patienceConfig: PatienceConfig = PatienceConfig(timeout = Span(5, Seconds), interval = Span(50, Millis))
 
   private val neverPatienceConfig: PatienceConfig = PatienceConfig(timeout = Span(1, Seconds), interval = Span(50, Millis))
   private val defaultAfterDelay: FiniteDuration = 1.second
