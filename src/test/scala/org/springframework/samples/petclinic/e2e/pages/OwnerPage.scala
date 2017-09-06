@@ -35,6 +35,11 @@ class OwnerPage(val url: String) extends AbstractPage {
     click on "submitOwner"
     new OwnerPage(currentUrl)
   }
+
+  def isTelephoneInvalid: Boolean = {
+    val elt = find(className("help-inline")).value
+    elt.isDisplayed && elt.text == "Must be a number with at most 10 digits"
+  }
 }
 
 object OwnerPage {

@@ -18,4 +18,15 @@ class AddOwnerTest extends EndToEndTest {
       newPage.info shouldBe Owner.someValidOwner
     }
   }
+
+  it should "not validate if the phone number isn't numeric" in {
+    val invalid = Owner.someValidOwner.copy(telephone = "invalid")
+
+    go to page
+    page.fillIn(invalid)
+
+    eventually {
+      page.isTelephoneInvalid shouldBe true
+    }
+  }
 }
