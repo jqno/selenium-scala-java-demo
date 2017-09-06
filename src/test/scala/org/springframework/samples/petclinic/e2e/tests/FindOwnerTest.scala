@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.e2e.tests
 
+import org.springframework.samples.petclinic.e2e.data.Owner
 import org.springframework.samples.petclinic.e2e.pages.FindOwnersPage
 import org.springframework.samples.petclinic.e2e.plumbing.EndToEndTest
 
@@ -35,7 +36,7 @@ class FindOwnerTest extends EndToEndTest {
     val ownerPage = eventually { page.clickOwner("Betty Davis") }
 
     ownerPage.id shouldBe 2
-    ownerPage.info.name shouldBe "Betty Davis"
+    ownerPage.info shouldBe Owner.bettyDavis
   }
 
 }
