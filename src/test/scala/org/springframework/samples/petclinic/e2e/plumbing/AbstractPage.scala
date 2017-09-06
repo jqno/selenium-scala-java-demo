@@ -11,12 +11,12 @@ import org.scalatest.selenium.{Page, WebBrowser}
 import org.scalatest.time.{Millis, Span}
 
 trait AbstractPage extends Page with WebBrowser with OptionValues {
-  implicit lazy val driver = AbstractPage.driver
-
-  val homepage = "http://localhost:4444"
+  implicit lazy val driver: WebDriver = AbstractPage.driver
 }
 
 object AbstractPage extends WebBrowser {
+  val homepage = "http://localhost:4444"
+
   // Set up the selenium webdriver
   ChromeDriverManager.getInstance.setup()
   implicit val driver: WebDriver = new ChromeDriver

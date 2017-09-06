@@ -1,15 +1,17 @@
 package org.springframework.samples.petclinic.e2e.pages
 
 import org.springframework.samples.petclinic.e2e.data.Owner
+import org.springframework.samples.petclinic.e2e.pages.OwnerPage._
 import org.springframework.samples.petclinic.e2e.plumbing.AbstractPage
 
 class OwnerPage(val url: String) extends AbstractPage {
-  require(url startsWith s"$homepage/owners/")
+  require(url startsWith urlPrefix)
 
-  val id: Option[Int] = url.substring(url.lastIndexOf("/") + 1, url.length) match {
-    case "new" => None
-    case n => Some(n.toInt)
+  def this(id: Option[Int]) = {
+    this(idToUrl(id))
   }
+
+  val id: Option[Int] = urlToId(url)
 
   def info: Owner = {
     val Array(firstName, lastName) = find("ownerName").value.text.split(" ") // Assuming there is exactly 1 space in the name
@@ -21,4 +23,18 @@ class OwnerPage(val url: String) extends AbstractPage {
       find("ownerTelephone").value.text)
   }
 
+}
+
+object OwnerPage {
+  val urlPrefix = s"${AbstractPage.homepage}/owners"
+
+  def idToUrl(id: Option[Int]): String = id match {
+    case Some(n) => s"$urlPrefix/$n"
+    case None => s"$urlPrefix/new"
+  }
+
+  def urlToId(url: String): Option[Int] = url.substring(url.lastIndexOf("/") + 1, url.length) match {
+    case "new" => None
+    case n => Some(n.toInt)
+  }
 }

@@ -4,7 +4,7 @@ import org.springframework.samples.petclinic.e2e.plumbing.AbstractPage
 
 class FindOwnersPage extends AbstractPage {
 
-  val url = s"$homepage/owners/list"
+  val url = s"${AbstractPage.homepage}/owners/list"
 
 
   def findOwner(filter: String): Unit = {
