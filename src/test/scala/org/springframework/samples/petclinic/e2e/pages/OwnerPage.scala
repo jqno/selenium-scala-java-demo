@@ -31,7 +31,7 @@ class OwnerPage(val url: String) extends AbstractPage {
     textField(name("telephone")).value = info.telephone
   }
 
-  def clickAddOwner(): OwnerPage = {
+  def clickAddOwner(): OwnerPage = eventually {
     click on "submitOwner"
     new OwnerPage(currentUrl)
   }

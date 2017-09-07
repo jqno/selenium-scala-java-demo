@@ -24,12 +24,12 @@ class FindOwnersPage extends AbstractPage {
     findAll(cssSelector("tbody tr")).size
   }
 
-  def clickOwner(name: String): OwnerPage = {
+  def clickOwner(name: String): OwnerPage = eventually {
     click on linkText(name)
     new OwnerPage(currentUrl)
   }
 
-  def clickAddOwner(): OwnerPage = {
+  def clickAddOwner(): OwnerPage = eventually {
     click on linkText("Add Owner")
     new OwnerPage(currentUrl)
   }

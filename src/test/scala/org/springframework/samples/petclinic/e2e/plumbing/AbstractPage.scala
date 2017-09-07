@@ -10,7 +10,7 @@ import org.scalatest.OptionValues
 import org.scalatest.selenium.{Page, WebBrowser}
 import org.scalatest.time.{Millis, Span}
 
-trait AbstractPage extends Page with WebBrowser with OptionValues {
+trait AbstractPage extends Page with WebBrowser with ConfiguredEventually with OptionValues {
   implicit lazy val driver: WebDriver = AbstractPage.driver
 }
 

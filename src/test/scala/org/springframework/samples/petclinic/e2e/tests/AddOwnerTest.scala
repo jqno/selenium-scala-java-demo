@@ -12,7 +12,7 @@ class AddOwnerTest extends EndToEndTest {
   it should "successfully add an owner" in {
     go to page
     page.fillIn(Owner.someValidOwner)
-    val newPage = eventually { page.clickAddOwner() }
+    val newPage = page.clickAddOwner()
 
     eventually {
       newPage.info shouldBe Owner.someValidOwner
