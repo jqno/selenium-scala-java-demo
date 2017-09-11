@@ -21,7 +21,11 @@ class AddEditOwnerPage(val url: String) extends AbstractPage {
     textField(name("telephone")).value = info.telephone
   }
 
-  def clickAddOwner(): ShowOwnerPage = {
+  def changeFirstName(firstName: String): Unit = {
+    textField(name("firstName")).value = firstName
+  }
+
+  def clickSubmit(): ShowOwnerPage = {
     click on "submitOwner"
     eventually { new ShowOwnerPage(currentUrl) }
   }

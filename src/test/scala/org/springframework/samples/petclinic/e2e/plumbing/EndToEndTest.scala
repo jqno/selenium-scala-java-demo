@@ -9,8 +9,8 @@ import scala.concurrent.duration._
 
 trait EndToEndTest extends FlatSpec with Matchers with ConfiguredEventually with OptionValues {
 
-  private val neverPatienceConfig: PatienceConfig = PatienceConfig(timeout = Span(1, Seconds), interval = Span(50, Millis))
-  private val defaultAfterDelay: FiniteDuration = 1.second
+  private val neverPatienceConfig: PatienceConfig = patienceConfig
+  private val defaultAfterDelay: FiniteDuration = 5.second
 
   override def withFixture(test: NoArgTest): Outcome = {
     val outcome = test()
