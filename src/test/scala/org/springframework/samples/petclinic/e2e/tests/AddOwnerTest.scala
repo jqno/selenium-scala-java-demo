@@ -1,12 +1,12 @@
 package org.springframework.samples.petclinic.e2e.tests
 
 import org.springframework.samples.petclinic.e2e.data.Owner
-import org.springframework.samples.petclinic.e2e.pages.OwnerPage
+import org.springframework.samples.petclinic.e2e.pages.AddEditOwnerPage
 import org.springframework.samples.petclinic.e2e.plumbing.EndToEndTest
 
 class AddOwnerTest extends EndToEndTest {
 
-  val page = new OwnerPage(None)
+  val page = new AddEditOwnerPage(None)
 
 
   behavior of "Add Owner"

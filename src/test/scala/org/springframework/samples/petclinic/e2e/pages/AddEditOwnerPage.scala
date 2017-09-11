@@ -1,10 +1,10 @@
 package org.springframework.samples.petclinic.e2e.pages
 
 import org.springframework.samples.petclinic.e2e.data.Owner
-import org.springframework.samples.petclinic.e2e.pages.OwnerPage._
+import org.springframework.samples.petclinic.e2e.pages.AddEditOwnerPage._
 import org.springframework.samples.petclinic.e2e.plumbing.AbstractPage
 
-class OwnerPage(val url: String) extends AbstractPage {
+class AddEditOwnerPage(val url: String) extends AbstractPage {
   require(url startsWith urlPrefix)
 
   def this(id: Option[Int]) = {
@@ -12,16 +12,6 @@ class OwnerPage(val url: String) extends AbstractPage {
   }
 
   val id: Option[Int] = urlToId(url)
-
-  def info: Owner = {
-    val Array(firstName, lastName) = find("ownerName").value.text.split(" ") // Assuming there is exactly 1 space in the name
-    Owner(
-      firstName,
-      lastName,
-      find("ownerAddress").value.text,
-      find("ownerCity").value.text,
-      find("ownerTelephone").value.text)
-  }
 
   def fillIn(info: Owner): Unit = {
     textField(name("firstName")).value = info.firstName
@@ -31,9 +21,9 @@ class OwnerPage(val url: String) extends AbstractPage {
     textField(name("telephone")).value = info.telephone
   }
 
-  def clickAddOwner(): OwnerPage = eventually {
+  def clickAddOwner(): ShowOwnerPage = {
     click on "submitOwner"
-    new OwnerPage(currentUrl)
+    eventually { new ShowOwnerPage(currentUrl) }
   }
 
   def isTelephoneInvalid: Boolean = {
@@ -42,16 +32,19 @@ class OwnerPage(val url: String) extends AbstractPage {
   }
 }
 
-object OwnerPage {
+object AddEditOwnerPage {
   val urlPrefix = s"${AbstractPage.homepage}/owners"
 
   def idToUrl(id: Option[Int]): String = id match {
-    case Some(n) => s"$urlPrefix/$n"
+    case Some(n) => s"$urlPrefix/$n/edit"
     case None => s"$urlPrefix/new"
   }
 
-  def urlToId(url: String): Option[Int] = url.substring(url.lastIndexOf("/") + 1, url.length) match {
-    case "new" => None
-    case n => Some(n.toInt)
+  def urlToId(url: String): Option[Int] = {
+    val parts = url.split("/")
+    if (parts.last == "new")
+      None
+    else
+      Some(parts(parts.size - 2).toInt)
   }
 }

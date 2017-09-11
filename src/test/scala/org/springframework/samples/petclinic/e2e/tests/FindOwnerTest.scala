@@ -33,18 +33,18 @@ class FindOwnerTest extends EndToEndTest {
     go to page
     page.findOwner("Davis")
 
-    val ownerPage = page.clickOwner("Betty Davis")
+    val showOwnerPage = page.clickOwner("Betty Davis")
 
-    ownerPage.id shouldBe Some(2)
-    ownerPage.info shouldBe Owner.bettyDavis
+    showOwnerPage.id shouldBe 2
+    showOwnerPage.info shouldBe Owner.bettyDavis
   }
 
   it should "go to the 'Add Owner' page if the 'Add Owner' button is clicked" in {
     go to page
-    val ownerPage = page.clickAddOwner()
+    val editOwnerPage = page.clickAddOwner()
 
     eventually {
-      ownerPage.id shouldBe None
+      editOwnerPage.id shouldBe None
     }
   }
 
