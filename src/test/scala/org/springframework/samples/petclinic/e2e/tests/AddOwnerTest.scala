@@ -9,6 +9,8 @@ class AddOwnerTest extends EndToEndTest {
   val page = new OwnerPage(None)
 
 
+  behavior of "Add Owner"
+
   it should "successfully add an owner" in {
     go to page
     page.fillIn(Owner.someValidOwner)
