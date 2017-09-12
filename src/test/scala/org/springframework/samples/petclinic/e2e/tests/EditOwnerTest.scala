@@ -13,16 +13,25 @@ class EditOwnerTest extends EndToEndTest {
   behavior of "Edit Owner"
 
   it should "not display the old data after an owner was edited" in {
+    Given("the 'Show Owner' page for Jeff Black")
     go to showPage
     showPage.info shouldBe Owner.jeffBlack
 
+
+    When("we click 'Edit Owner'")
     val editPage = showPage.clickEditOwner()
+    And("we change Jeff's first name to Steve")
     eventually {
       editPage.changeFirstName("Steve")
     }
+    And("we submit")
     editPage.clickSubmit()
+
+
+    Then("the details should reflect this change")
     showPage.info shouldBe Owner.jeffBlack.copy(firstName = "Steve")
 
+    And("on the 'Find Owners' page, a 'Jeff Black' should appear")
     go to findPage
     findPage.findAllOwners()
     never {

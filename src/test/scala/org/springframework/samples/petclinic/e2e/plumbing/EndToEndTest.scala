@@ -7,7 +7,7 @@ import org.scalatest.time.{Millis, Seconds, Span}
 
 import scala.concurrent.duration._
 
-trait EndToEndTest extends FlatSpec with Matchers with ConfiguredEventually with OptionValues {
+trait EndToEndTest extends FlatSpec with Matchers with ConfiguredEventually with OptionValues with GivenWhenThen {
 
   private val neverPatienceConfig: PatienceConfig = patienceConfig
   private val defaultAfterDelay: FiniteDuration = 5.second
