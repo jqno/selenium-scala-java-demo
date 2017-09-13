@@ -34,4 +34,8 @@ class FindOwnersPage extends AbstractPage {
     new AddEditOwnerPage(currentUrl)
   }
 
+  def waitUntilSearchResultsAreFullyLoaded(): Unit = eventually {
+    find(tagName("table")).value
+  }
+
 }

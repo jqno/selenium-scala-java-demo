@@ -40,8 +40,10 @@ class FindOwnerTest extends EndToEndTest {
   it should "go to the owner page if an owner is clicked" in {
     Given("the 'Find Owner' page")
     go to page
-    And("the search results for 'Davis'")
+    And("a search for 'Davis'")
     page.findOwner("Davis")
+    And("the search results are fully loaded")
+    page.waitUntilSearchResultsAreFullyLoaded()
 
     When("we click on owner 'Betty Davis'")
     val showOwnerPage = page.clickOwner("Betty Davis")

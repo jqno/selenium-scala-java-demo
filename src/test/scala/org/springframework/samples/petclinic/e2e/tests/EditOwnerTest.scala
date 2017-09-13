@@ -20,6 +20,8 @@ class EditOwnerTest extends EndToEndTest {
 
     When("we click 'Edit Owner'")
     val editPage = showPage.clickEditOwner()
+    And("the page is fully loaded")
+    editPage.waitUntilFullyLoaded()
     And("we change Jeff's first name to Steve")
     eventually {
       editPage.changeFirstName("Steve")
@@ -33,7 +35,7 @@ class EditOwnerTest extends EndToEndTest {
 
     And("on the 'Find Owners' page, a 'Jeff Black' should appear")
     go to findPage
-    findPage.findAllOwners()
+    findPage.findAllOwners()  // This triggers our artificial wait
     never {
       findPage.listOfOwners should include ("Jeff Black")
     }

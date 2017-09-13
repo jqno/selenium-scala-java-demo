@@ -34,6 +34,10 @@ class AddEditOwnerPage(val url: String) extends AbstractPage {
     val elt = find(className("help-inline")).value
     elt.isDisplayed && elt.text == "Must be a number with at most 10 digits"
   }
+
+  def waitUntilFullyLoaded(): Unit = eventually {
+    find(name("firstName")).value
+  }
 }
 
 object AddEditOwnerPage {
