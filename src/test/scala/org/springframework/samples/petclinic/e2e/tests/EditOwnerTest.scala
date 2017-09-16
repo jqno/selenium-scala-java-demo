@@ -15,7 +15,9 @@ class EditOwnerTest extends EndToEndTest {
   it should "not display the old data after an owner was edited" in {
     Given("the 'Show Owner' page for Jeff Black")
     go to showPage
-    showPage.info shouldBe Owner.jeffBlack
+    eventually {
+      showPage.info shouldBe Owner.jeffBlack
+    }
 
 
     When("we click 'Edit Owner'")
@@ -31,7 +33,9 @@ class EditOwnerTest extends EndToEndTest {
 
 
     Then("the details should reflect this change")
-    showPage.info shouldBe Owner.jeffBlack.copy(firstName = "Steve")
+    eventually {
+      showPage.info shouldBe Owner.jeffBlack.copy(firstName = "Steve")
+    }
 
     And("on the 'Find Owners' page, a 'Jeff Black' should appear")
     go to findPage
