@@ -22,8 +22,6 @@ class EditOwnerTest extends EndToEndTest {
 
     When("we click 'Edit Owner'")
     val editPage = showPage.clickEditOwner()
-    And("the page is fully loaded")
-    editPage.waitUntilFullyLoaded()
     And("we change Jeff's first name to Steve")
     eventually {
       editPage.changeFirstName("Steve")

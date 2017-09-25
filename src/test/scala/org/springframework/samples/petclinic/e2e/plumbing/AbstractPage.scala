@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.{WebDriver, Dimension => SeleniumDimension}
 import org.scalatest.OptionValues
 import org.scalatest.selenium.{Page, WebBrowser}
-import org.scalatest.time.{Millis, Span}
+import org.scalatest.time.{Seconds, Span}
 
 trait AbstractPage extends Page with WebBrowser with ConfiguredEventually with OptionValues {
   /**
@@ -60,7 +60,7 @@ object AbstractPage extends WebBrowser {
     driver.manage.window.setSize(new SeleniumDimension(1290, 1024))
 
     // Disable Selenium's implicit wait because it often waits long times for no reason.
-    implicitlyWait(Span(1, Millis))
+    implicitlyWait(Span(3, Seconds))
 
     // Close the browser when the tests are done.
     sys.addShutdownHook { quit() }
